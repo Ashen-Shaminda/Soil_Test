@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:soil_test/help.dart';
 
 import '../tabs/second_tab.dart';
 import 'bars.dart';
-
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -78,6 +77,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     'help',
                     style: TextStyle(fontSize: 20),
                   ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const Help(),
+                      ),
+                    );
+                  },
                 ),
                 Divider(),
                 Container(

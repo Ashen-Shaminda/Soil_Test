@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:soil_test/sensors.dart';
-import 'package:soil_test/test_tab.dart';
 
 class FirstTab extends StatefulWidget {
   const FirstTab({Key? key}) : super(key: key);
@@ -15,7 +14,6 @@ class FirstTab extends StatefulWidget {
 }
 
 class _FirstTabState extends State<FirstTab> {
-
   final Future<FirebaseApp> _fApp = Firebase.initializeApp();
 
   final sensors = new Sensors();
@@ -28,26 +26,7 @@ class _FirstTabState extends State<FirstTab> {
   int moistureLevel = 0;
   String lightLevel = '';
   int rainDropLevel = 0;
-  double temperatur = 0;
-
-  // showData() {
-  //   dref.child('sensors').once().then((snapshot) {
-  //     String lights = snapshot.value['lights state'].toString();
-  //     print("Lights state : $lights");
-  //     String moisture = snapshot.value['moisture state'].toString();
-  //     print("Moisture state : $moisture");
-  //     String rainDrop = snapshot.value['rain drop value'].toString();
-  //     print("Rain Drop Value : $rainDrop");
-  //     // print(snapshot.value['lights state']);
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   databaseReference = dref;
-  // }
+  double temperatureLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +55,13 @@ class _FirstTabState extends State<FirstTab> {
         FirebaseDatabase.instance.reference().child('sensors');
     // listen to firebase realtime database value.
     _testRef.onValue.listen((event) {
+      if (!mounted) return;
       setState(() {
         lightState = event.snapshot.value['lights state'].toString();
         moisture = event.snapshot.value['moisture state'].toString();
         temperature = event.snapshot.value['temperature state'].toString();
         rainDrop = event.snapshot.value['rain drop value'].toString();
+        temperature = event.snapshot.value['temperature'].toString();
 
         // moisture state
         // https://www.geeksforgeeks.org/soil-moisture-measurement-using-arduino-and-soil-moisture-sensor/
@@ -90,7 +71,7 @@ class _FirstTabState extends State<FirstTab> {
         rainDropLevel = sensors.rainDrop(int.parse(rainDrop));
 
         // temperature level
-
+        temperatureLevel = sensors.temperatureLevel(double.parse(temperature));
         //light state
       });
     });
@@ -188,7 +169,7 @@ class _FirstTabState extends State<FirstTab> {
                   lineWidth: 20,
                   percent: 0.7,
                   center: Text(
-                    '$temperature %',
+                    '$temperature C',
                     style: const TextStyle(
                         fontFamily: 'Kanit-Bold.ttf',
                         fontWeight: FontWeight.bold,

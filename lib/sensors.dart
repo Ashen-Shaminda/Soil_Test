@@ -37,4 +37,6 @@ class Sensors {
       return 1;
     }
   }
+
+  temperatureLevel(double temp) {}
 }
