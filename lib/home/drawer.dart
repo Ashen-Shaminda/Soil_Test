@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:soil_test/help.dart';
-
 import '../tabs/second_tab.dart';
 import 'bars.dart';
 
@@ -27,7 +26,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home_outlined),
+            leading: const Icon(Icons.home_outlined),
             title: const Text(
               'HOME',
               style: TextStyle(fontSize: 20),
@@ -41,7 +40,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.add_chart_sharp),
+            leading: const Icon(Icons.add_chart_sharp),
             title: const Text(
               'Suggestions',
               style: TextStyle(fontSize: 20),
@@ -55,25 +54,32 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             },
           ),
           Container(
-            margin: EdgeInsets.only(top: 300),
+            margin: const EdgeInsets.only(top: 300),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Divider(
+                const Divider(
                   thickness: 1,
                   color: Colors.black54,
                   endIndent: 2,
                 ),
                 ListTile(
-                  leading: Icon(Icons.login_outlined),
-                  title: Text(
+                  leading: const Icon(Icons.login_outlined),
+                  title: const Text(
                     'Login',
                     style: TextStyle(fontSize: 20),
                   ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const Help(),
+                      ),
+                    );
+                  },
                 ),
                 ListTile(
-                  leading: Icon(Icons.help),
-                  title: Text(
+                  leading: const Icon(Icons.help),
+                  title: const Text(
                     'help',
                     style: TextStyle(fontSize: 20),
                   ),
@@ -85,10 +91,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     );
                   },
                 ),
-                Divider(),
+                const Divider(),
                 Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: ListTile(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const ListTile(
                     leading: Icon(
                       Icons.abc_outlined,
                       size: 50,

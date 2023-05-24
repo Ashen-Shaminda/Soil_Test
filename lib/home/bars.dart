@@ -15,12 +15,12 @@ class Bars extends StatelessWidget {
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: Colors.blueGrey[400],
+              color: Colors.blueGrey[900],
             ),
           ),
           titleTextStyle:
               const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.blueGrey[900],
+          backgroundColor: Colors.blueGrey[100],
           title: const Align(
             alignment: Alignment.center,
             child: Padding(

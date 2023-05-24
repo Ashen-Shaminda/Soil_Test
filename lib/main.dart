@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:soil_test/firebase/firebaseData.dart';
+import 'package:soil_test/suggestions/sampleOne.dart';
+// import 'package:soil_test/firebase/firebaseData.dart';
+// import 'package:soil_test/suggestions/sampleOne.dart';
 import 'home/bars.dart';
 
 // import 'home_page.dart';
@@ -11,13 +14,13 @@ Future main() async {
   await initialization(null);
 
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
 Future initialization(BuildContext? context) async {
   await Future.delayed(
-    Duration(seconds: 2),
+    const Duration(seconds: 2),
   );
 }
 
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Bars(),
     );

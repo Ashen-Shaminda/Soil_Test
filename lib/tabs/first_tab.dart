@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:soil_test/sensors.dart';
 
@@ -16,7 +14,7 @@ class FirstTab extends StatefulWidget {
 class _FirstTabState extends State<FirstTab> {
   final Future<FirebaseApp> _fApp = Firebase.initializeApp();
 
-  final sensors = new Sensors();
+  final sensors = Sensors();
 
   String lightState = '0';
   String moisture = '0';
@@ -37,14 +35,14 @@ class _FirstTabState extends State<FirstTab> {
           future: _fApp,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Text(
+              return const Text(
                 'Something Went Wrong',
                 style: TextStyle(fontSize: 50),
               );
             } else if (snapshot.hasData) {
               return content();
             } else {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
           }),
     );
@@ -57,11 +55,10 @@ class _FirstTabState extends State<FirstTab> {
     _testRef.onValue.listen((event) {
       if (!mounted) return;
       setState(() {
-        lightState = event.snapshot.value['lights state'].toString();
-        moisture = event.snapshot.value['moisture state'].toString();
-        temperature = event.snapshot.value['temperature state'].toString();
-        rainDrop = event.snapshot.value['rain drop value'].toString();
-        temperature = event.snapshot.value['temperature'].toString();
+        lightState = event.snapshot.value!['lights state'].toString();
+        moisture = event.snapshot.value!['moisture state'].toString();
+        rainDrop = event.snapshot.value!['rain drop value'].toString();
+        temperature = event.snapshot.value!['temperature'].toString();
 
         // moisture state
         // https://www.geeksforgeeks.org/soil-moisture-measurement-using-arduino-and-soil-moisture-sensor/
@@ -71,20 +68,28 @@ class _FirstTabState extends State<FirstTab> {
         rainDropLevel = sensors.rainDrop(int.parse(rainDrop));
 
         // temperature level
-        temperatureLevel = sensors.temperatureLevel(double.parse(temperature));
+        // temperatureLevel = sensors.temperatureLevel(double.parse(temperature));
         //light state
       });
     });
-    return SafeArea(
-      child: Scrollbar(
-        thickness: 10,
-        radius: const Radius.circular(5),
-        child: ListView(
-          primary: true,
-          shrinkWrap: true,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+    return Scrollbar(
+      thickness: 10,
+      radius: const Radius.circular(5),
+      child: ListView(
+        primary: true,
+        shrinkWrap: true,
+        children: [
+          // container 1
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Tooltip(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              height: 30,
+              showDuration: const Duration(milliseconds: 1500),
+              message: "Moisture Level $moisture",
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -118,7 +123,7 @@ class _FirstTabState extends State<FirstTab> {
                   lineWidth: 20,
                   percent: (moistureLevel / 10),
                   center: Text(
-                    'Level\n${moistureLevel}',
+                    'Level\n$moistureLevel',
                     style: const TextStyle(
                       fontFamily: 'Kanit-Bold.ttf',
                       fontWeight: FontWeight.bold,
@@ -134,8 +139,18 @@ class _FirstTabState extends State<FirstTab> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          // container 2
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Tooltip(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              height: 30,
+              showDuration: const Duration(milliseconds: 1500),
+              message: "Temperature Level $temperature",
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -183,8 +198,18 @@ class _FirstTabState extends State<FirstTab> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          // container 3
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Tooltip(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              height: 30,
+              showDuration: const Duration(milliseconds: 1500),
+              message: "Rain Drop Level $rainDrop",
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -233,8 +258,18 @@ class _FirstTabState extends State<FirstTab> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
+          ),
+          // constainer 4
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Tooltip(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              height: 30,
+              showDuration: const Duration(milliseconds: 1500),
+              message: "Light Intesity Level $lightState",
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -250,7 +285,7 @@ class _FirstTabState extends State<FirstTab> {
                 ),
                 width: 500,
                 height: 230,
-                child: Column(
+                child: const Column(
                   children: [
                     Text(
                       'Light Intensity',
@@ -275,8 +310,8 @@ class _FirstTabState extends State<FirstTab> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
