@@ -1,4 +1,4 @@
-import 'package:soil_test/tabs/first_tab.dart';
+// import 'package:soil_test/tabs/first_tab.dart';
 
 class Sensors {
   int moisture(int moistureLevel) {
@@ -32,6 +32,20 @@ class Sensors {
     } else if (rainDropLevel >= 350 && rainDropLevel <= 525) {
       return 6;
     } else if (rainDropLevel >= 525 && rainDropLevel <= 700) {
+      return 8;
+    } else {
+      return 1;
+    }
+  }
+
+  int lightIntensity(int lightLevel) {
+    if (lightLevel >= 0 && lightLevel <= 175) {
+      return 2;
+    } else if (lightLevel >= 175 && lightLevel <= 350) {
+      return 4;
+    } else if (lightLevel >= 350 && lightLevel <= 525) {
+      return 6;
+    } else if (lightLevel >= 525 && lightLevel <= 700) {
       return 8;
     } else {
       return 1;

@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:soil_test/firebase/firebaseData.dart';
-import 'package:soil_test/suggestions/sampleOne.dart';
+// import 'package:soil_test/firebase/firebaseData.dart';
+// import 'package:soil_test/suggestions/sampleOne.dart';
 // import 'package:soil_test/firebase/firebaseData.dart';
 // import 'package:soil_test/suggestions/sampleOne.dart';
 import 'home/bars.dart';

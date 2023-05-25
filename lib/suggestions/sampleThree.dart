@@ -2,6 +2,7 @@
 // Chilli Plant
 
 import 'package:flutter/material.dart';
+import 'package:soil_test/suggestions/remedies.dart';
 
 class SampleThree extends StatelessWidget {
   const SampleThree({Key? key}) : super(key: key);
@@ -167,6 +168,123 @@ class SampleThree extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 40,
+                  child: Divider(
+                    height: 100,
+                    thickness: 2,
+                    indent: 10,
+                    endIndent: 10,
+                    color: Colors.white,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 350,
+                      height: 300,
+                      child: const Image(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/pineapple.png'),
+                      ),
+                    ),
+                    Container(
+                      width: 400,
+                      child: RichText(
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          // Styles for TextSpans must be explicitly defined.
+                          // Child text spans will inherit styles from parent
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Egg Plants\n\n',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  "For the optimum growth of pineapple needed factors\n\n 65-85f temperature \n 5 – 6 ph\n 6-8hrs sunlight 20,000-30,000 lux\n 40-60% moisture\n 2.5-5cm water per week",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                  child: Divider(
+                    height: 100,
+                    thickness: 2,
+                    indent: 10,
+                    endIndent: 10,
+                    color: Colors.white,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 350,
+                      height: 300,
+                      child: const Image(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/eggplants.png'),
+                      ),
+                    ),
+                    Container(
+                      width: 400,
+                      child: RichText(
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          // Styles for TextSpans must be explicitly defined.
+                          // Child text spans will inherit styles from parent
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Banana\n\n',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  "For the optimum growth of Banana needed factors\n\n 75-95f  temperature \n 5.6-7 ph\n 6-8hrs sunlight 10,000-20,000 lux \n 50-70% moisture\n 10-15cm water per week",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                  child: Divider(
+                    height: 100,
+                    thickness: 5,
+                    color: Colors.white,
+                  ),
+                ),
+                const Remedies(),
                 const SizedBox(
                   height: 40,
                   child: Divider(

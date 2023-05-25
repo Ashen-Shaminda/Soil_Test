@@ -3,11 +3,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:soil_test/suggestions/sampleOne.dart';
+// import 'package:soil_test/suggestions/sampleOne.dart';
 import 'package:soil_test/tabs/first_tab.dart';
 
 import '../suggestions/sampleThree.dart';
-import '../suggestions/sampleTwo.dart';
+// import '../suggestions/sampleTwo.dart';
 
 class FirebaseData extends StatefulWidget {
   const FirebaseData({super.key});

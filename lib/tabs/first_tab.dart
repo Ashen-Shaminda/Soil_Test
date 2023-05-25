@@ -22,7 +22,7 @@ class _FirstTabState extends State<FirstTab> {
   String rainDrop = '0';
 
   int moistureLevel = 0;
-  String lightLevel = '';
+  int lightLevel = 0;
   int rainDropLevel = 0;
   double temperatureLevel = 0;
 
@@ -66,6 +66,9 @@ class _FirstTabState extends State<FirstTab> {
 
         // rain drop level
         rainDropLevel = sensors.rainDrop(int.parse(rainDrop));
+
+        // light level
+        lightLevel = sensors.lightIntensity(int.parse(lightState));
 
         // temperature level
         // temperatureLevel = sensors.temperatureLevel(double.parse(temperature));
@@ -269,7 +272,7 @@ class _FirstTabState extends State<FirstTab> {
               ),
               height: 30,
               showDuration: const Duration(milliseconds: 1500),
-              message: "Light Intesity Level $lightState",
+              message: "Lights Intensity Level $lightState",
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -285,28 +288,36 @@ class _FirstTabState extends State<FirstTab> {
                 ),
                 width: 500,
                 height: 230,
-                child: const Column(
-                  children: [
-                    Text(
-                      'Light Intensity',
+                child: CircularPercentIndicator(
+                  header: const Padding(
+                    padding: EdgeInsets.only(bottom: 15.0),
+                    child: Text(
+                      'Light Level',
                       style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white,
+                          letterSpacing: 2),
+                    ),
+                  ),
+                  animation: true,
+                  animationDuration: 1000,
+                  radius: 150,
+                  lineWidth: 20,
+                  percent: (rainDropLevel / 10),
+                  center: Text(
+                    'Level\n$lightLevel',
+                    style: const TextStyle(
+                        fontFamily: 'Kanit-Bold.ttf',
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         color: Colors.white,
-                        letterSpacing: 2,
-                      ),
-                    ),
-                    // Container(
-                    //   child: Icon(
-                    //     Icons.light_mode,
-                    //     size: 100,
-                    //     color: Colors.white,
-                    //   ),
-                    //   color: Colors.teal,
-                    //   height: 200,
-                    //   width: 350,
-                    // ),
-                  ],
+                        letterSpacing: 2),
+                    textAlign: TextAlign.center,
+                  ),
+                  progressColor: Colors.black54,
+                  backgroundColor: Colors.blueGrey.shade700,
+                  circularStrokeCap: CircularStrokeCap.butt,
                 ),
               ),
             ),
